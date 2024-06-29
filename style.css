@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    background-color: rgb(228, 228, 228);
+    color: rgb(50, 149, 158);
+}
+.component {
+    display: flex;
+    justify-content: center;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid 0.25em rgb(50, 149, 158);
+    /*box-shadow: -6px 6px 12px black;*/
+    border-radius: 10em;
+    width: 50em;
+}
+.day {
+    font-size: 4.5em;
+}
+.hour {
+    font-size: 2.5em;
+}
+.month {
+    font-size: 3.5em;
+}
