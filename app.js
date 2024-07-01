@@ -31,18 +31,43 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .then(async (response) => {
         lb_deleteCities();
-        response.data.cities.forEach((element, index) => {
-          const newDiv = document.createElement("div");
-          newDiv.innerHTML = element.name;
-          newDiv.className = "citiesFound";
-          newDiv.id = index;
-          e.insertBefore(newDiv, document.querySelectorAll(".citiesFound")[-1]);
+        response.data.cities.forEach((element) => {
+          axios
+            .get(
+              `https://api.meteo-concept.com/api/forecast/daily/0?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&insee=${element.insee}`
+            )
+            .then(async (response) => {
+              const divGen = document.createElement("div");
+              const divName = document.createElement("div");
+              const divT = document.createElement("div");
+              const divTMin = document.createElement("div");
+              const divTMax = document.createElement("div");
+              divGen.className = "individualCity";
+              divName.className = "cityName";
+              divT.className = "temperature";
+              divTMin.className = "tmin";
+              divTMax.className = "tmax";
+              divName.innerHTML = response.data.city.name;
+              divTMin.innerHTML = response.data.forecast.tmin;
+              divTMax.innerHTML = response.data.forecast.tmax;
+              document.querySelector(".resultWeather").appendChild(divGen);
+              document.querySelector(".individualCity").appendChild(divT);
+              document
+                .querySelector(".individualCity")
+                .insertBefore(divName, divT);
+              document.querySelector(".temperature").appendChild(divTMax);
+              document
+                .querySelector(".temperature")
+                .insertBefore(divTMin, divTMax);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         });
       })
       .catch((err) => {
         console.log(err);
-        console.log("errorer");
-      }); //finally
+      });
   };
   const lb_deleteCities = () => {};
   for (let x = 0; x < document.querySelectorAll(".citiesFound").length; x++) {

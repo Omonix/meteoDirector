@@ -17,6 +17,24 @@ body {
     border-bottom-left-radius: 10em;
     width: 50em;
 }
+.resultWeather {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.cityName {
+    color: green;
+}
+.temperature {
+    display: flex;
+    justify-content: space-around;
+}
+.tmin {
+    color: rgb(0, 127, 255);
+}
+.tmax {
+    color: rgb(255, 0, 0);
+}
 .day {
     font-size: 4.5em;
 }
