@@ -24,6 +24,32 @@ document.addEventListener("DOMContentLoaded", () => {
     "December",
   ];
 
+  const lb_submitCity = (e) => {
+    axios
+      .get(
+        `https://api.meteo-concept.com/api/location/cities?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&search=${city}`
+      )
+      .then(async (response) => {
+        response.data.cities.forEach((element) => {
+          console.log(element.name);
+        });
+      })
+      .catch((err) => {
+        console.log(err.response.status, err.response.data.message);
+        console.log("errorer");
+      }); //finally
+  };
+
+  document.querySelector(".submitCity").addEventListener("click", () => {
+    if (document.querySelector(".citySearch").value !== "") {
+      city = document.querySelector(".citySearch").value;
+      lb_submitCity(document.querySelector(".resultWeather"));
+    } else {
+      alert("Write a city's name.");
+    }
+    document.querySelector(".citySearch").value = "";
+  });
+
   setInterval(() => {
     let dateIs = new Date();
     document.querySelector(".day").innerHTML = `${
@@ -36,18 +62,4 @@ document.addEventListener("DOMContentLoaded", () => {
       ".hour"
     ).innerHTML = `${dateIs.getHours()}:${dateIs.getMinutes()}:${dateIs.getSeconds()}`;
   }, 1000);
-  const test = () => {
-    axios
-      .get(
-        `https://api.meteo-concept.com/api/location/cities?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&search=${city}`
-      )
-      .then(async (response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err.response.status, err.response.data.message);
-        console.log("errorer");
-      });
-  };
-  test();
 });

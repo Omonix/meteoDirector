@@ -13,8 +13,8 @@ body {
     align-items: center;
     flex-direction: column;
     border: solid 0.25em rgb(50, 149, 158);
-    /*box-shadow: -6px 6px 12px black;*/
-    border-radius: 10em;
+    border-top-left-radius: 10em;
+    border-bottom-left-radius: 10em;
     width: 50em;
 }
 .day {
