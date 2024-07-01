@@ -30,15 +30,24 @@ document.addEventListener("DOMContentLoaded", () => {
         `https://api.meteo-concept.com/api/location/cities?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&search=${city}`
       )
       .then(async (response) => {
-        response.data.cities.forEach((element) => {
-          console.log(element.name);
+        lb_deleteCities();
+        response.data.cities.forEach((element, index) => {
+          const newDiv = document.createElement("div");
+          newDiv.innerHTML = element.name;
+          newDiv.className = "citiesFound";
+          newDiv.id = index;
+          e.insertBefore(newDiv, document.querySelectorAll(".citiesFound")[-1]);
         });
       })
       .catch((err) => {
-        console.log(err.response.status, err.response.data.message);
+        console.log(err);
         console.log("errorer");
       }); //finally
   };
+  const lb_deleteCities = () => {};
+  for (let x = 0; x < document.querySelectorAll(".citiesFound").length; x++) {
+    document.querySelectorAll(".citiesFound")[0].remove();
+  }
 
   document.querySelector(".submitCity").addEventListener("click", () => {
     if (document.querySelector(".citySearch").value !== "") {
