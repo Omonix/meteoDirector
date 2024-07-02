@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   let city = "";
+  let dayForecast = 0;
   let daysTab = [
     "Monday",
     "Tuesday",
@@ -31,10 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .then(async (response) => {
         lb_deleteCities();
-        response.data.cities.forEach((element) => {
+        response.data.cities.forEach((element, index) => {
           axios
             .get(
-              `https://api.meteo-concept.com/api/forecast/daily/0?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&insee=${element.insee}`
+              `https://api.meteo-concept.com/api/forecast/daily/${dayForecast}?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&insee=${element.insee}`
             )
             .then(async (response) => {
               const divGen = document.createElement("div");
@@ -43,21 +44,24 @@ document.addEventListener("DOMContentLoaded", () => {
               const divTMin = document.createElement("div");
               const divTMax = document.createElement("div");
               divGen.className = "individualCity";
+              divGen.id = `indi${index}`;
               divName.className = "cityName";
+              divName.id = `name${index}`;
               divT.className = "temperature";
+              divT.id = `temp${index}`;
               divTMin.className = "tmin";
               divTMax.className = "tmax";
               divName.innerHTML = response.data.city.name;
               divTMin.innerHTML = response.data.forecast.tmin;
               divTMax.innerHTML = response.data.forecast.tmax;
               document.querySelector(".resultWeather").appendChild(divGen);
-              document.querySelector(".individualCity").appendChild(divT);
+              document.getElementById(`indi${index}`).appendChild(divT);
               document
-                .querySelector(".individualCity")
+                .getElementById(`indi${index}`)
                 .insertBefore(divName, divT);
-              document.querySelector(".temperature").appendChild(divTMax);
+              document.getElementById(`temp${index}`).appendChild(divTMax);
               document
-                .querySelector(".temperature")
+                .getElementById(`temp${index}`)
                 .insertBefore(divTMin, divTMax);
             })
             .catch((err) => {
@@ -78,6 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".individualCity")[0].remove();
     }
   };
+  const lb_optionReload = () => {
+    const futurDays = new Date();
+    for (let y = 2; y < document.querySelectorAll("option").length; y++) {
+      document.querySelectorAll("option")[y].innerHTML = new Date(
+        `${futurDays.getFullYear()}-${monthsTab[futurDays.getMonth()]}-${
+          futurDays.getDate() + y
+        }`
+      );
+    }
+  };
 
   document.querySelector(".submitCity").addEventListener("click", () => {
     if (document.querySelector(".citySearch").value !== "") {
@@ -88,6 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     document.querySelector(".citySearch").value = "";
   });
+  document.querySelector(".daysFuture").addEventListener("click", () => {
+    dayForecast = document.querySelector(".daysFuture").value;
+    lb_submitCity();
+  });
+
+  lb_optionReload();
 
   setInterval(() => {
     let dateIs = new Date();
@@ -101,4 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ".hour"
     ).innerHTML = `${dateIs.getHours()}:${dateIs.getMinutes()}:${dateIs.getSeconds()}`;
   }, 1000);
+  setInterval(() => {
+    lb_optionReload();
+  }, 3600000);
 });
