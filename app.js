@@ -32,46 +32,47 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .then(async (response) => {
         lb_deleteCities();
-        response.data.cities.forEach((element, index) => {
-          axios
-            .get(
-              `https://api.meteo-concept.com/api/forecast/daily/${dayForecast}?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&insee=${element.insee}`
-            )
-            .then(async (response) => {
-              const divGen = document.createElement("div");
-              const divName = document.createElement("div");
-              const divT = document.createElement("div");
-              const divTMin = document.createElement("div");
-              const divTMax = document.createElement("div");
-              divGen.className = "individualCity";
-              divGen.id = `indi${index}`;
-              divName.className = "cityName";
-              divName.id = `name${index}`;
-              divT.className = "temperature";
-              divT.id = `temp${index}`;
-              divTMin.className = "tmin";
-              divTMax.className = "tmax";
-              divName.innerHTML = response.data.city.name;
-              divTMin.innerHTML = response.data.forecast.tmin;
-              divTMax.innerHTML = response.data.forecast.tmax;
-              document.querySelector(".resultWeather").appendChild(divGen);
-              document.getElementById(`indi${index}`).appendChild(divT);
-              document
-                .getElementById(`indi${index}`)
-                .insertBefore(divName, divT);
-              document.getElementById(`temp${index}`).appendChild(divTMax);
-              document
-                .getElementById(`temp${index}`)
-                .insertBefore(divTMin, divTMax);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        });
+        lb_getForteen(response.data.cities);
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+  const lb_getForteen = (tab) => {
+    tab.forEach((element, index) => {
+      axios
+        .get(
+          `https://api.meteo-concept.com/api/forecast/daily/${dayForecast}?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&insee=${element.insee}`
+        )
+        .then(async (response) => {
+          const divGen = document.createElement("div");
+          const divName = document.createElement("div");
+          const divT = document.createElement("div");
+          const divTMin = document.createElement("div");
+          const divTMax = document.createElement("div");
+          divGen.className = "individualCity";
+          divGen.id = `indi${index}`;
+          divName.className = "cityName";
+          divName.id = `name${index}`;
+          divT.className = "temperature";
+          divT.id = `temp${index}`;
+          divTMin.className = "tmin";
+          divTMax.className = "tmax";
+          divName.innerHTML = response.data.city.name;
+          divTMin.innerHTML = response.data.forecast.tmin;
+          divTMax.innerHTML = response.data.forecast.tmax;
+          document.querySelector(".resultWeather").appendChild(divGen);
+          document.getElementById(`indi${index}`).appendChild(divT);
+          document.getElementById(`indi${index}`).insertBefore(divName, divT);
+          document.getElementById(`temp${index}`).appendChild(divTMax);
+          document
+            .getElementById(`temp${index}`)
+            .insertBefore(divTMin, divTMax);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   };
   const lb_deleteCities = () => {
     for (
