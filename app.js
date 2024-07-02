@@ -69,10 +69,15 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(err);
       });
   };
-  const lb_deleteCities = () => {};
-  for (let x = 0; x < document.querySelectorAll(".citiesFound").length; x++) {
-    document.querySelectorAll(".citiesFound")[0].remove();
-  }
+  const lb_deleteCities = () => {
+    for (
+      let x = 0;
+      x < document.querySelectorAll(".individualCity").length;
+      x++
+    ) {
+      document.querySelectorAll(".individualCity")[0].remove();
+    }
+  };
 
   document.querySelector(".submitCity").addEventListener("click", () => {
     if (document.querySelector(".citySearch").value !== "") {
