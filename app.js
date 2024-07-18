@@ -102,6 +102,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".daysFuture").addEventListener("click", () => {
     dayForecast = document.querySelector(".daysFuture").value;
   });
+  document.querySelector(".citySearch").addEventListener("keydown", (e) => {
+    if (e.code === "Enter") {
+      document.querySelector(".submitCity").click();
+    }
+  });
   document.querySelector(".citySearch").focus();
 
   lb_optionReload();
