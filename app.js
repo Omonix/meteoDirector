@@ -75,22 +75,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
   const lb_deleteCities = () => {
-    for (
-      let x = 0;
-      x < document.querySelectorAll(".individualCity").length;
-      x++
-    ) {
-      document.querySelectorAll(".individualCity")[0].remove();
-    }
+    document.querySelector(".resultWeather").remove();
+    const prinDiv = document.createElement("div");
+    prinDiv.className = "resultWeather";
+    document.querySelector(".weatherComponent").appendChild(prinDiv);
   };
   const lb_optionReload = () => {
-    const futurDays = new Date();
-    for (let y = 2; y < document.querySelectorAll("option").length; y++) {
-      document.querySelectorAll("option")[y].innerHTML = new Date(
+    for (let y = 1; y < document.querySelectorAll("option").length; y++) {
+      document.querySelectorAll("option")[y].innerHTML = `Today +${y}`;
+      /*new Date(
         `${futurDays.getFullYear()}-${monthsTab[futurDays.getMonth()]}-${
           futurDays.getDate() + y
         }`
-      );
+      );*/
     }
   };
 
@@ -101,12 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       alert("Write a city's name.");
     }
-    document.querySelector(".citySearch").value = "";
   });
   document.querySelector(".daysFuture").addEventListener("click", () => {
     dayForecast = document.querySelector(".daysFuture").value;
-    lb_submitCity();
   });
+  document.querySelector(".citySearch").focus();
 
   lb_optionReload();
 
