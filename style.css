@@ -1,7 +1,7 @@
 body {
     margin: 0;
-    background-color: rgb(228, 228, 228);
-    color: rgb(50, 149, 158);
+    background-color: white;
+    color: #00BAFB;
 }
 .component {
     display: flex;
@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: solid 0.25em rgb(50, 149, 158);
+    border: solid 0.25em #00BAFB;
     border-top-left-radius: 10em;
     border-bottom-left-radius: 10em;
     width: 50em;
@@ -24,10 +24,12 @@ body {
 }
 .cityName {
     color: green;
+    font-size: 2em;
 }
 .temperature {
     display: flex;
     justify-content: space-around;
+    font-size: 1.5em;
 }
 .tmin {
     color: rgb(0, 127, 255);
@@ -43,4 +45,28 @@ body {
 }
 .month {
     font-size: 3.5em;
+}
+.ephemerideComponent {
+    display: flex;
+    justify-content: space-between;
+    width: 30em;
+    font-size: 1.2em;
+}
+.sunrise {
+    color: #80DDFD;
+}
+.sunset {
+    color: #005D7E;
+}
+.durationDay {
+    color: #00BAFB;
+}
+.diffDay {
+    color: #002F3F;
+}
+.individualCity {
+    border: solid 0.15em #00BAFB;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 0.5em;
 }

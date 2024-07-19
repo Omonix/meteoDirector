@@ -2,27 +2,27 @@ document.addEventListener("DOMContentLoaded", () => {
   let city = "";
   let dayForecast = 0;
   let daysTab = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi",
+    "Dimanche",
   ];
   let monthsTab = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juillet",
+    "Août",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Decembre",
   ];
 
   const lb_submitCity = (e) => {
@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
           divTMin.className = "tmin";
           divTMax.className = "tmax";
           divName.innerHTML = response.data.city.name;
-          divTMin.innerHTML = response.data.forecast.tmin;
-          divTMax.innerHTML = response.data.forecast.tmax;
+          divTMin.innerHTML = `${response.data.forecast.tmin}°C`;
+          divTMax.innerHTML = `${response.data.forecast.tmax}°C`;
           document.querySelector(".resultWeather").appendChild(divGen);
           document.getElementById(`indi${index}`).appendChild(divT);
           document.getElementById(`indi${index}`).insertBefore(divName, divT);
@@ -68,11 +68,46 @@ document.addEventListener("DOMContentLoaded", () => {
           document
             .getElementById(`temp${index}`)
             .insertBefore(divTMin, divTMax);
+          lb_getEphemeride(element, index);
         })
         .catch((err) => {
           console.log(err);
         });
     });
+  };
+  const lb_getEphemeride = (e, i) => {
+    axios
+      .get(
+        `https://api.meteo-concept.com/api/ephemeride/${dayForecast}?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&insee=${e.insee}`
+      )
+      .then(async (response) => {
+        console.log(response);
+        const divEphemeride = document.createElement("div");
+        const divSunset = document.createElement("div");
+        const divSunrise = document.createElement("div");
+        const divDurationDay = document.createElement("div");
+        const divDiff = document.createElement("div");
+        divEphemeride.className = "ephemerideComponent";
+        divSunset.className = "sunset";
+        divSunrise.className = "sunrise";
+        divDurationDay.className = "durationDay";
+        divDiff.className = "diffDay";
+        divEphemeride.id = `ephe${i}`;
+        divSunrise.innerHTML = `Aube : ${response.data.ephemeride.sunrise}`;
+        divSunset.innerHTML = `Crépuscule : ${response.data.ephemeride.sunset}`;
+        divDurationDay.innerHTML = `Jour : ${response.data.ephemeride.duration_day}`;
+        divDiff.innerHTML = `difference : ${response.data.ephemeride.diff_duration_day} min`;
+        document
+          .querySelectorAll(".individualCity")
+          [i].appendChild(divEphemeride);
+        document.getElementById(`ephe${i}`).appendChild(divDiff);
+        document.getElementById(`ephe${i}`).insertBefore(divSunset, divDiff);
+        document.getElementById(`ephe${i}`).insertBefore(divSunrise, divSunset);
+        document
+          .getElementById(`ephe${i}`)
+          .insertBefore(divDurationDay, divSunset);
+      })
+      .catch((err) => console.log(err));
   };
   const lb_deleteCities = () => {
     document.querySelector(".resultWeather").remove();
