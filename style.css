@@ -1,3 +1,7 @@
+* {
+    font-weight: 550;
+    transition-duration: 300ms;
+}
 body {
     margin: 0;
     background-color: white;
@@ -69,4 +73,30 @@ body {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     padding: 0.5em;
+}
+.submitCity {
+    border-color: #00BAFB;
+    color: #00BAFB;
+    background-color: white;
+}
+.submitCity:hover {
+    background-color: #00BAFB;
+    color: white;
+}
+.citySearch {
+    border-color: #00BAFB;
+    color: #00BAFB;
+}
+.citySearch:focus {
+    outline-style: none;
+    background: #00BAFB;
+    color: white;
+}
+.daysFuture {
+    border-color: #00BAFB;
+    color: #00BAFB;
+}
+.daysFuture:hover {
+    background: #00BAFB;
+    color: white;
 }
