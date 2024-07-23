@@ -35,19 +35,20 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .then(async (response) => {
         lb_deleteCities();
-        lb_getForteen(response.data.cities);
+        lb_getInfo(response.data.cities);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const lb_getForteen = (tab) => {
+  const lb_getInfo = (tab) => {
     tab.forEach((element, index) => {
       axios
         .get(
           `https://api.meteo-concept.com/api/forecast/daily/${dayForecast}?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&insee=${element.insee}`
         )
         .then(async (response) => {
+          console.log(response);
           const divGen = document.createElement("div");
           const divName = document.createElement("div");
           const divT = document.createElement("div");
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
           divT.id = `temp${index}`;
           divTMin.className = "tmin";
           divTMax.className = "tmax";
-          divName.innerHTML = response.data.city.name;
+          divName.innerHTML = `${response.data.city.name} (${response.data.city.insee})`;
           divTMin.innerHTML = `${response.data.forecast.tmin}°C`;
           divTMax.innerHTML = `${response.data.forecast.tmax}°C`;
           document.querySelector(".resultWeather").appendChild(divGen);
@@ -84,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `https://api.meteo-concept.com/api/ephemeride/${dayForecast}?token=e96e72b85f13950284302fce1f05967f2f78c27de31dfe5571a89145114735fd&insee=${e.insee}`
       )
       .then(async (response) => {
-        console.log(response);
         const divEphemeride = document.createElement("div");
         const divSunset = document.createElement("div");
         const divSunrise = document.createElement("div");
