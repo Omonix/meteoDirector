@@ -54,19 +54,37 @@ document.addEventListener("DOMContentLoaded", () => {
           const divT = document.createElement("div");
           const divTMin = document.createElement("div");
           const divTMax = document.createElement("div");
+          const divPlusButtonComponent = document.createElement("div");
+          const divPlusButton = document.createElement("div");
+          const divPlusElement = document.createElement("div");
           divGen.className = "individualCity";
           divGen.id = `indi${index}`;
           divName.className = "cityName";
           divName.id = `name${index}`;
           divT.className = "temperature";
           divT.id = `temp${index}`;
+          divPlusButtonComponent.className = "plusCity";
+          divPlusButtonComponent.id = `button${index}`;
+          divPlusButton.className = "buttonPlus";
+          divPlusElement.className = "plusComponent";
+          divPlusElement.id = `plus${index}`;
           divTMin.className = "tmin";
           divTMax.className = "tmax";
+          divPlusButton.innerHTML = "fsds";
           divName.innerHTML = `${response.data.city.name} (${response.data.city.insee})`;
           divTMin.innerHTML = `${response.data.forecast.tmin}°C`;
           divTMax.innerHTML = `${response.data.forecast.tmax}°C`;
           document.querySelector(".resultWeather").appendChild(divGen);
-          document.getElementById(`indi${index}`).appendChild(divT);
+          document
+            .getElementById(`indi${index}`)
+            .appendChild(divPlusButtonComponent);
+          document.getElementById(`button${index}`).appendChild(divPlusButton);
+          document
+            .getElementById(`indi${index}`)
+            .insertBefore(divPlusElement, divPlusButtonComponent);
+          document
+            .getElementById(`indi${index}`)
+            .insertBefore(divT, divPlusElement);
           document.getElementById(`indi${index}`).insertBefore(divName, divT);
           document.getElementById(`temp${index}`).appendChild(divTMax);
           document
@@ -101,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         divDurationDay.innerHTML = `Jour : ${response.data.ephemeride.duration_day}`;
         divDiff.innerHTML = `difference : ${response.data.ephemeride.diff_duration_day} min`;
         document
-          .querySelectorAll(".individualCity")
+          .querySelectorAll(".plusComponent")
           [i].appendChild(divEphemeride);
         document.getElementById(`ephe${i}`).appendChild(divDiff);
         document.getElementById(`ephe${i}`).insertBefore(divSunset, divDiff);

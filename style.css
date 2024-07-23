@@ -9,6 +9,18 @@ body {
     background-color: white;
     color: #00BAFB;
 }
+input {
+    border: solid 0.25em #00BAFB;
+    color: #00BAFB;
+    background-color: white;
+    border-radius: 20px;
+    font-weight: 750;
+}
+input:hover {
+    background-color: #00BAFB;
+    color: white;
+    cursor: pointer;
+}
 .component {
     display: flex;
     justify-content: center;
@@ -24,10 +36,51 @@ body {
     width: 50em;
     padding: 1em 0 1em 1em;
 }
+.day {
+    font-size: 4.5em;
+}
+.hour {
+    font-size: 2.5em;
+}
+.month {
+    font-size: 3.5em;
+}
+.director {
+    display: flex;
+    justify-content: space-around;
+}
+.citySearch {
+    padding-left: 0.75em;
+}
+.citySearch:focus {
+    outline-style: none;
+    background: #00BAFB;
+    color: white;
+}
+.daysFuture {
+    border: solid 0.25em #00BAFB;
+    border-radius: 20px;
+    color: #00BAFB;
+    padding-left: 0.4em;
+    cursor: pointer;
+}
+.daysFuture:hover {
+    background: #00BAFB;
+    color: white;
+}
+.daysFuture:focus {
+    outline-style: none;
+}
 .resultWeather {
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+.individualCity {
+    border: solid 0.15em #00BAFB;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 0.5em;
 }
 .cityName {
     color: green;
@@ -44,14 +97,27 @@ body {
 .tmax {
     color: rgb(255, 0, 0);
 }
-.day {
-    font-size: 4.5em;
+.plusCity {
+    display: flex;
+    justify-content: end;
 }
-.hour {
-    font-size: 2.5em;
+.buttonPlus, 
+.button {
+    border: solid 0.25em #00BAFB;
+    color: #00BAFB;
+    background-color: white;
+    border-radius: 20px;
+    padding: 0.15em 0.3em;
+    font-weight: 750;
 }
-.month {
-    font-size: 3.5em;
+.buttonPlus:hover, 
+.button:hover {
+    background-color: #00BAFB;
+    color: white;
+    cursor: pointer;
+}
+.plusComponent {
+    display: none;
 }
 .ephemerideComponent {
     display: flex;
@@ -71,40 +137,4 @@ body {
 }
 .diffDay {
     color: #002F3F;
-}
-.individualCity {
-    border: solid 0.15em #00BAFB;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    padding: 0.5em;
-}
-.citySearch {
-    border-color: #00BAFB;
-    color: #00BAFB;
-}
-.citySearch:focus {
-    outline-style: none;
-    background: #00BAFB;
-    color: white;
-}
-.daysFuture {
-    border-color: #00BAFB;
-    color: #00BAFB;
-}
-.daysFuture:hover {
-    background: #00BAFB;
-    color: white;
-}
-input[type=button] {
-    border-color: #00BAFB;
-    color: #00BAFB;
-    background-color: white;
-    border-width: 0.25em;
-    border-radius: 20px;
-    font-weight: 750;
-}
-input[type=button]:hover {
-    background-color: #00BAFB;
-    color: white;
-    cursor: pointer;
 }

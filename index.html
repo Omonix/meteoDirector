@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Météo</title>
-    <link rel="stylesheet" href="./reset.css" />
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./app.js"></script>
@@ -17,24 +16,26 @@
         <div class="month"></div>
       </div>
       <div class="main">
-        <input class="citySearch" type="text" value="" />
-        <input class="submitCity" type="button" value="Chercher" />
-        <select class="daysFuture">
-          <option value="0">Aujourd'hui</option>
-          <option value="1"></option>
-          <option value="2"></option>
-          <option value="3"></option>
-          <option value="4"></option>
-          <option value="5"></option>
-          <option value="6"></option>
-          <option value="7"></option>
-          <option value="8"></option>
-          <option value="9"></option>
-          <option value="10"></option>
-          <option value="11"></option>
-          <option value="12"></option>
-          <option value="13"></option>
-        </select>
+        <div class="director">
+          <input class="citySearch" type="text" value="" />
+          <div class="submitCity button">Chercher</div>
+          <select class="daysFuture">
+            <option value="0">Aujourd'hui</option>
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="6"></option>
+            <option value="7"></option>
+            <option value="8"></option>
+            <option value="9"></option>
+            <option value="10"></option>
+            <option value="11"></option>
+            <option value="12"></option>
+            <option value="13"></option>
+          </select>
+        </div>
         <div class="weatherComponent">
           <div class="resultWeather">
             <div class="individualCity">
@@ -43,12 +44,16 @@
                 <div class="tmin">20°C</div>
                 <div class="tmax">32°C</div>
               </div>
-              <input class="plusCity" type="button" value="Plus..." />
-              <div class="ephemerideComponent" id="ephe0">
-                <div class="sunrise">Aube : 06:26</div>
-                <div class="durationDay">Jour : 15:16</div>
-                <div class="sunset">Crépuscule : 21:42</div>
-                <div class="diffDay">difference : -2 min</div>
+              <div class="plusCity">
+                <div class="buttonPlus">Plus...</div>
+              </div>
+              <div class="plusComponent">
+                <div class="ephemerideComponent" id="ephe0">
+                  <div class="sunrise">Aube : 06:26</div>
+                  <div class="durationDay">Jour : 15:16</div>
+                  <div class="sunset">Crépuscule : 21:42</div>
+                  <div class="diffDay">difference : -2 min</div>
+                </div>
               </div>
             </div>
           </div>
