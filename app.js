@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "Novembre",
     "Decembre",
   ];
+  for (let y = 1; y < document.querySelectorAll("option").length; y++) {
+    document.querySelectorAll("option")[y].innerHTML = `Aujourd'hui +${y}`;
+  }
 
   const lb_submitCity = (e) => {
     axios
@@ -115,16 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
     prinDiv.className = "resultWeather";
     document.querySelector(".weatherComponent").appendChild(prinDiv);
   };
-  const lb_optionReload = () => {
-    for (let y = 1; y < document.querySelectorAll("option").length; y++) {
-      document.querySelectorAll("option")[y].innerHTML = `Today +${y}`;
-      /*new Date(
-        `${futurDays.getFullYear()}-${monthsTab[futurDays.getMonth()]}-${
-          futurDays.getDate() + y
-        }`
-      );*/
-    }
-  };
 
   document.querySelector(".submitCity").addEventListener("click", () => {
     if (document.querySelector(".citySearch").value !== "") {
@@ -134,8 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Write a city's name.");
     }
   });
-  document.querySelector(".daysFuture").addEventListener("click", () => {
+  document.querySelector(".daysFuture").addEventListener("change", () => {
     dayForecast = document.querySelector(".daysFuture").value;
+    lb_submitCity();
   });
   document.querySelector(".citySearch").addEventListener("keydown", (e) => {
     if (e.code === "Enter") {
@@ -143,8 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   document.querySelector(".citySearch").focus();
-
-  lb_optionReload();
 
   setInterval(() => {
     let dateIs = new Date();
