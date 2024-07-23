@@ -78,15 +78,6 @@ body {
     border-bottom-right-radius: 20px;
     padding: 0.5em;
 }
-.submitCity {
-    border-color: #00BAFB;
-    color: #00BAFB;
-    background-color: white;
-}
-.submitCity:hover {
-    background-color: #00BAFB;
-    color: white;
-}
 .citySearch {
     border-color: #00BAFB;
     color: #00BAFB;
@@ -103,4 +94,17 @@ body {
 .daysFuture:hover {
     background: #00BAFB;
     color: white;
+}
+input[type=button] {
+    border-color: #00BAFB;
+    color: #00BAFB;
+    background-color: white;
+    border-width: 0.25em;
+    border-radius: 20px;
+    font-weight: 750;
+}
+input[type=button]:hover {
+    background-color: #00BAFB;
+    color: white;
+    cursor: pointer;
 }
