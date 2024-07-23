@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+HR+Lijeva:wght@100..400&display=swap');
 * {
     font-weight: 550;
     transition-duration: 300ms;
+    font-family: Playwrite HR Lijeva;
 }
 body {
     margin: 0;
@@ -54,6 +56,7 @@ body {
 .ephemerideComponent {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 30em;
     font-size: 1.2em;
 }

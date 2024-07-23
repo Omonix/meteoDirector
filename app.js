@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".submitCity").addEventListener("click", () => {
     if (document.querySelector(".citySearch").value !== "") {
       city = document.querySelector(".citySearch").value;
+      document.querySelector(".citySearch").value = "";
       lb_submitCity(document.querySelector(".resultWeather"));
     } else {
       alert("Write a city's name.");
