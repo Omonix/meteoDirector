@@ -116,7 +116,7 @@ input:hover {
     color: white;
     cursor: pointer;
 }
-.plusComponent {
+.invisible {
     display: none;
 }
 .ephemerideComponent {

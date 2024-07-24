@@ -66,11 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
           divPlusButtonComponent.className = "plusCity";
           divPlusButtonComponent.id = `button${index}`;
           divPlusButton.className = "buttonPlus";
-          divPlusElement.className = "plusComponent";
+          divPlusElement.className = "plusComponent invisible";
           divPlusElement.id = `plus${index}`;
           divTMin.className = "tmin";
           divTMax.className = "tmax";
-          divPlusButton.innerHTML = "fsds";
+          divPlusButton.innerHTML = "Plus...";
           divName.innerHTML = `${response.data.city.name} (${response.data.city.insee})`;
           divTMin.innerHTML = `${response.data.forecast.tmin}°C`;
           divTMax.innerHTML = `${response.data.forecast.tmax}°C`;
@@ -127,6 +127,24 @@ document.addEventListener("DOMContentLoaded", () => {
         document
           .getElementById(`ephe${i}`)
           .insertBefore(divDurationDay, divSunset);
+        document
+          .querySelectorAll(".buttonPlus")
+          [i].addEventListener("click", () => {
+            if (
+              document.querySelectorAll(".plusComponent")[i].classList[1] ===
+              "invisible"
+            ) {
+              document
+                .querySelectorAll(".plusComponent")
+                [i].classList.remove("invisible");
+              document.querySelectorAll(".buttonPlus")[i].innerHTML = "Moins";
+            } else {
+              document
+                .querySelectorAll(".plusComponent")
+                [i].classList.add("invisible");
+              document.querySelectorAll(".buttonPlus")[i].innerHTML = "Plus...";
+            }
+          });
       })
       .catch((err) => console.log(err));
   };
@@ -136,14 +154,17 @@ document.addEventListener("DOMContentLoaded", () => {
     prinDiv.className = "resultWeather";
     document.querySelector(".weatherComponent").appendChild(prinDiv);
   };
-
-  document.querySelector(".submitCity").addEventListener("click", () => {
-    if (document.querySelector(".citySearch").value !== "") {
-      city = document.querySelector(".citySearch").value;
-      document.querySelector(".citySearch").value = "";
-      lb_submitCity(document.querySelector(".resultWeather"));
-    } else {
-      alert("Write a city's name.");
+  document.addEventListener("click", (element) => {
+    switch (element.srcElement) {
+      case document.querySelector(".submitCity"):
+        if (document.querySelector(".citySearch").value !== "") {
+          city = document.querySelector(".citySearch").value;
+          document.querySelector(".citySearch").value = "";
+          lb_submitCity(document.querySelector(".resultWeather"));
+        } else {
+          alert("Write a city's name.");
+        }
+        break;
     }
   });
   document.querySelector(".daysFuture").addEventListener("change", () => {
